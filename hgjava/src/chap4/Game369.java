@@ -64,7 +64,10 @@ public class Game369 {
 			}
 		}
 		
-		
+		// for Ãß°¡
+		for(int i = 0; i < 10; i++) {
+			System.out.println("hhhhhhh");
+		}
 		
 
 	} // end main
