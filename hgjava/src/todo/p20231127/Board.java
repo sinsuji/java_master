@@ -1,6 +1,11 @@
 package todo.p20231127;
 
+
+
 public class Board {
+	// 배열 : 
+	// private Board[] boards;
+		
 	private String boNo;
 	private String boTitle;
 	private String boWriter;
@@ -17,11 +22,11 @@ public class Board {
 	}
 	
 	void showInfo() {
-		System.out.println(boNo + "\t" + boTitle + "\t" + boWriter);
+		System.out.println(boNo + " " + boTitle + " " + boWriter);
 	}
 	
 	String showAllInfo() {
-		String result = "번호:" + boNo + "\t제목:" + boTitle + "\t작성자:" + boWriter + "\t내용:" + boText + "\t일시:" + boDate;
+		String result = "번호:" + boNo + " 제목:" + boTitle + "\n 작성자:" + boWriter + "\n 내용:" + boText + "\n 일시:" + boDate;
 		return result;
 	}
 	
