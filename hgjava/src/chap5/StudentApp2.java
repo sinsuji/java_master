@@ -7,14 +7,14 @@ public class StudentApp2 {
 	static Student[] students = null;
 	
 	public static void addStudent() {
-		System.out.println("ÇĞ»ıÁ¤º¸ ÀÔ·Â >> ");
+		System.out.println("í•™ìƒì •ë³´ ì…ë ¥ >> ");
 		for(int i = 0; i < students.length; i++) {
 			Student student = new Student(); // int num = 60;
-			System.out.print("ÇĞ»ı ÀÌ¸§ ÀÔ·Â >>");
+			System.out.print("í•™ìƒ ì´ë¦„ ì…ë ¥ >>");
 			student.name = scn.nextLine();
-			System.out.print("ÇĞ»ı Á¡¼ö ÀÔ·Â >>");
+			System.out.print("í•™ìƒ ì ìˆ˜ ì…ë ¥ >>");
 			student.score = Integer.parseInt(scn.nextLine());
-			System.out.print("³²/¿© >>");
+			System.out.print("ë‚¨/ì—¬ >>");
 			student.gender = scn.nextLine();
 			
 			students[i] = student;
@@ -22,20 +22,20 @@ public class StudentApp2 {
 	} // end of addStudent()
 	
 	public static void searchStudent() {
-		System.out.println("Á¶È¸ÇÒ ÀÌ¸§ÀÔ·Â >> ");
+		System.out.println("ì¡°íšŒí•  ì´ë¦„ì…ë ¥ >> ");
 		String name = scn.nextLine();
 		boolean exists = false;
 		
-		// ÇĞ»ıÀÌ¸§ - Á¡¼ö Ãâ·Â
+		// í•™ìƒì´ë¦„ - ì ìˆ˜ ì¶œë ¥
 		for(Student stdn : students) {
 			if(name.equals(stdn.name)) {
-				System.out.println("ÀÌ¸§Àº " + stdn.name + ", Á¡¼ö´Â " + stdn.score);
+				System.out.println("ì´ë¦„ì€ " + stdn.name + ", ì ìˆ˜ëŠ” " + stdn.score);
 				exists = true;
 			}
 		}
-		// Ã£´Â ÀÌ¸§ÀÇ Á¸Àç¿©ºÎ : exists ¸¦ È®ÀÎ
+		// ì°¾ëŠ” ì´ë¦„ì˜ ì¡´ì¬ì—¬ë¶€ : exists ë¥¼ í™•ì¸
 		if(!exists) {
-			System.out.println("Ã£´Â ÀÌ¸§ÀÌ ¾ø½À´Ï´Ù");
+			System.out.println("ì°¾ëŠ” ì´ë¦„ì´ ì—†ìŠµë‹ˆë‹¤");
 		}
 	} // end of searchStudent()
 
@@ -43,35 +43,35 @@ public class StudentApp2 {
 		int sumOfMen = 0, cntOfMen = 0;
 		int sumOfWomen = 0, cntOfWomen = 0;
 		for(Student stn : students) {
-			if(stn.gender.equals("³²")) {
+			if(stn.gender.equals("ë‚¨")) {
 				sumOfMen += stn.score;
 				cntOfMen++;
-			}else if(stn.gender.equals("¿©")){
+			}else if(stn.gender.equals("ì—¬")){
 				sumOfWomen += stn.score;
 				cntOfWomen++;
 			}
 		}
-		System.out.println("³²ÇĞ»ıÀÇ Æò±Õ : " + (sumOfMen * 1.0 / cntOfMen));
-		System.out.println("¿©ÇĞ»ıÀÇ Æò±Õ : " + (sumOfWomen * 1.0 / cntOfWomen));
+		System.out.println("ë‚¨í•™ìƒì˜ í‰ê·  : " + (sumOfMen * 1.0 / cntOfMen));
+		System.out.println("ì—¬í•™ìƒì˜ í‰ê·  : " + (sumOfWomen * 1.0 / cntOfWomen));
 	} // end of analysis()
 	
 	public static void modify() {
-		//ÀÌ¸§ÀÔ·Â -> º¯°æÁ¡¼ö
-		System.out.println("Á¶È¸ÇÒ ÀÌ¸§ÀÔ·Â >> ");
+		//ì´ë¦„ì…ë ¥ -> ë³€ê²½ì ìˆ˜
+		System.out.println("ì¡°íšŒí•  ì´ë¦„ì…ë ¥ >> ");
 		String name = scn.nextLine();
 		boolean exists = false;
 		
 		for(int i = 0; i < students.length; i++) {
-			// Á¶°ÇÃß°¡ => º¯°æÁ¡¼ö ÀÔ·Â
+			// ì¡°ê±´ì¶”ê°€ => ë³€ê²½ì ìˆ˜ ì…ë ¥
 			if(name.equals(students[i].name)) {
-				System.out.println("º¯°æÁ¡¼ö ÀÔ·Â >> ");
+				System.out.println("ë³€ê²½ì ìˆ˜ ì…ë ¥ >> ");
 				students[i].score = Integer.parseInt(scn.nextLine());
 				exists = true;
 			}
 		}
-		// Ã£´Â ÀÌ¸§ ¾øÀ½
+		// ì°¾ëŠ” ì´ë¦„ ì—†ìŒ
 		if(!exists) {
-			System.out.println("Á¶È¸ÇÒ ÀÌ¸§ÀÌ ¾ø½À´Ï´Ù");
+			System.out.println("ì¡°íšŒí•  ì´ë¦„ì´ ì—†ìŠµë‹ˆë‹¤");
 		}
 		
 	} // end of modify()
@@ -81,13 +81,13 @@ public class StudentApp2 {
 		int studentNum = 0;
 		
 		while(run) {
-			System.out.println("1.ÇĞ»ı¼ö 2.Á¡¼öÀÔ·Â 3.Á¶È¸ 4.ºĞ¼®(ÃÖ°íÁ¡¼ö, Æò±Õ) 5.¼öÁ¤ 6.Á¾·á");
+			System.out.println("1.í•™ìƒìˆ˜ 2.ì ìˆ˜ì…ë ¥ 3.ì¡°íšŒ 4.ë¶„ì„(ìµœê³ ì ìˆ˜, í‰ê· ) 5.ìˆ˜ì • 6.ì¢…ë£Œ");
 			int menu = scn.nextInt(); // 3 Enter 
 			scn.nextLine();
 			
 			switch(menu){
 			case 1 : 
-				System.out.println("ÇĞ»ı¼ö ÀÔ·Â >> ");
+				System.out.println("í•™ìƒìˆ˜ ì…ë ¥ >> ");
 				studentNum = Integer.parseInt(scn.nextLine()); // "3" -> 3
 				students = new Student[studentNum];
 				break;
@@ -97,14 +97,14 @@ public class StudentApp2 {
 			case 3 : 
 				searchStudent();
 				break;
-			case 4 : // ºĞ¼®
+			case 4 : // ë¶„ì„
 				analysis();
 				break;
-			case 5 : // ¼öÁ¤ 
+			case 5 : // ìˆ˜ì • 
 				modify();
 				break;
 			case 6 : 
-				System.out.println("Á¾·áÇÕ´Ï´Ù");
+				System.out.println("ì¢…ë£Œí•©ë‹ˆë‹¤");
 				run = false;
 			}
 		} // end of while

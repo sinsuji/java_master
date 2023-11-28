@@ -5,19 +5,19 @@ import java.util.Scanner;
 public class WhileExe1 {
 
 	public static void main(String[] args) {
-		// for : ¹İº¹È¸¼ö°¡ Á¤ÇØÁ®ÀÖ´Â °æ¿ì
+		// for : ë°˜ë³µíšŒìˆ˜ê°€ ì •í•´ì ¸ìˆëŠ” ê²½ìš°
 		
-		// while : Á¶°ÇÀ» ¸¸Á·ÇÏ´Â µ¿¾È ¹İº¹
+		// while : ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ë™ì•ˆ ë°˜ë³µ
 		Scanner scn = new Scanner(System.in);
 		while(true) {
-			System.out.print("¹®ÀÚ°ªÀ» ÀÔ·Â >>> ");
+			System.out.print("ë¬¸ìê°’ì„ ì…ë ¥ >>> ");
 			
 			String txt = scn.nextLine();
 			if(txt.equals("quit")) {
-				System.out.println("Á¾·áÇÕ´Ï´Ù");
+				System.out.println("ì¢…ë£Œí•©ë‹ˆë‹¤");
 				break;
 			}
-			System.out.println("ÀÔ·Â°ªÀº " + txt + " ÀÔ´Ï´Ù");
+			System.out.println("ì…ë ¥ê°’ì€ " + txt + " ì…ë‹ˆë‹¤");
 		}
 		System.out.println("end of program");
 	

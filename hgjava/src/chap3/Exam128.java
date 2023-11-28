@@ -1,32 +1,32 @@
 package chap3;
 
-import java.util.*; // ÀÚ¹Ù util¿¡ ÀÖ´Â ¸ğµç °Íµé
+import java.util.*; // ìë°” utilì— ìˆëŠ” ëª¨ë“  ê²ƒë“¤
 
 public class Exam128 {
 
 	public static void main(String[] args) {
-		// ¹®Á¦4
+		// ë¬¸ì œ4
 		int penNum = 534;
 		int stuNum = 30;
 		
-		// ÇĞ»ı 1¸íÀÌ °¡Áö´Â ¿¬ÇÊ °³¼ö
+		// í•™ìƒ 1ëª…ì´ ê°€ì§€ëŠ” ì—°í•„ ê°œìˆ˜
 		int ppsNum = penNum / stuNum;
-		// ³²Àº ¿¬ÇÊ °³¼ö
+		// ë‚¨ì€ ì—°í•„ ê°œìˆ˜
 		int rempNum = penNum % stuNum;
 
-		System.out.printf("ÇĞ»ı´ç ¿¬ÇÊ ¼ö : %d, ³²Àº ¿¬ÇÊ °³¼ö : %d \n", ppsNum, rempNum);
+		System.out.printf("í•™ìƒë‹¹ ì—°í•„ ìˆ˜ : %d, ë‚¨ì€ ì—°í•„ ê°œìˆ˜ : %d \n", ppsNum, rempNum);
 		
-		// ¹®Á¦5 => °­Á¦ Å¸ÀÔº¯È¯
+		// ë¬¸ì œ5 => ê°•ì œ íƒ€ì…ë³€í™˜
 		
-		// ¹®Á¦6
+		// ë¬¸ì œ6
 		int value = 365;
 		System.out.println(value/100*100);
 		
-		// ¹®Á¦7 => ºÎµ¿¼Ò¼öÁ¡ Ç¥Çö ¹æ½Ä 0.1Àº 0.1º¸´Ù Å«°ª
-		// °­Á¦Å¸ÀÔ º¯È¯ (float)0.1
+		// ë¬¸ì œ7 => ë¶€ë™ì†Œìˆ˜ì  í‘œí˜„ ë°©ì‹ 0.1ì€ 0.1ë³´ë‹¤ í°ê°’
+		// ê°•ì œíƒ€ì… ë³€í™˜ (float)0.1
 		
-		// ¹®Á¦8
-		// »ç´Ù¸®²ÃÀÇ ³Êºñ = (À­º¯ + ¾Æ·§º¯) * ³ôÀÌ / 2
+		// ë¬¸ì œ8
+		// ì‚¬ë‹¤ë¦¬ê¼´ì˜ ë„ˆë¹„ = (ìœ—ë³€ + ì•„ë«ë³€) * ë†’ì´ / 2
 		
 		int lenghtTop = 5;
 		int lengthBottom = 10;
@@ -34,50 +34,50 @@ public class Exam128 {
 		double area = (lenghtTop + lengthBottom) * height / 2.0;
 		System.out.println(area);
 		
-		// ¹®Á¦9
-		// ctrl + space ÀÚµ¿ÀÔ·Â
-		// ctrl + alt + ¹æÇâÅ° = º¹»ç
-		// ctrl + d ÇÑÁÙ Áö¿ì±â
+		// ë¬¸ì œ9
+		// ctrl + space ìë™ì…ë ¥
+		// ctrl + alt + ë°©í–¥í‚¤ = ë³µì‚¬
+		// ctrl + d í•œì¤„ ì§€ìš°ê¸°
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Ã¹ ¹øÂ° ¼ö : ");
+		System.out.print("ì²« ë²ˆì§¸ ìˆ˜ : ");
 		double num1 = sc.nextDouble();
 		
-		System.out.print("µÎ ¹øÂ° ¼ö : ");
+		System.out.print("ë‘ ë²ˆì§¸ ìˆ˜ : ");
 		double num2 = sc.nextDouble();
 		System.out.println("---------------");
 		
 		if(num2 == 0.0) {
-			System.out.println("°á°ú : ¹«ÇÑ´ë");
+			System.out.println("ê²°ê³¼ : ë¬´í•œëŒ€");
 		}else {
-			System.out.println("°á°ú : " + (num1 / num2));
+			System.out.println("ê²°ê³¼ : " + (num1 / num2));
 		}
 		
 		
-		// 10¹ø
+		// 10ë²ˆ
 		int var1 = 10;
 		int var2 = 3;
 		int var3 = 14;
 		double var4 = var1 * var1 * Double.parseDouble(var2 + "." + var3);
-		System.out.println("¿øÀÇ ³ĞÀÌ:" + var4);
+		System.out.println("ì›ì˜ ë„“ì´:" + var4);
 		
-		// 11¹ø
+		// 11ë²ˆ
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("¾ÆÀÌµğ : ");
+		System.out.print("ì•„ì´ë”” : ");
 		String name = scanner.nextLine();
 		
-		System.out.print("ÆĞ½º¿öµå : ");
+		System.out.print("íŒ¨ìŠ¤ì›Œë“œ : ");
 		String strPassword = scanner.nextLine();
 		int password = Integer.parseInt(strPassword);
 		
 		if(name.equals("java")) {
 			if(password == 12345){
-				System.out.println("·Î±×ÀÎ ¼º°ø");
+				System.out.println("ë¡œê·¸ì¸ ì„±ê³µ");
 			}else {
-				System.out.println("·Î±×ÀÎ ½ÇÆĞ : ÆĞ½º¿öµå°¡ Æ²¸²");
+				System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨ : íŒ¨ìŠ¤ì›Œë“œê°€ í‹€ë¦¼");
 			}
 		}else {
-			System.out.println("·Î±×ÀÎ ½ÇÆĞ : ¾ÆÀÌµğ Á¸ÀçÇÏÁö ¾ÊÀ½");
+			System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨ : ì•„ì´ë”” ì¡´ì¬í•˜ì§€ ì•ŠìŒ");
 		}
 		
 		

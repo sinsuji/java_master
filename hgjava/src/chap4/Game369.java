@@ -5,66 +5,66 @@ import java.util.Scanner;
 public class Game369 {
 
 	public static void main(String[] args) {
-		// 1 ~ 50 : 369°ÔÀÓ
+		// 1 ~ 50 : 369ê²Œì„
 		
-		// 3, 6, 9 °¹¼ö Ã¼Å© º¯¼ö
+		// 3, 6, 9 ê°¯ìˆ˜ ì²´í¬ ë³€ìˆ˜
 		int cnt = 0;
-		// ¼ıÀÚ 1~50 ¹İº¹¹®
+		// ìˆ«ì 1~50 ë°˜ë³µë¬¸
 		for(int i = 1; i <= 50; i++) {
-			cnt = 0; // ´ÙÀ½ ¼ö¸¦ À§ÇÑ ÃÊ±âÈ­
-			if(i % 10 == 3 || i % 10 == 6 || i % 10 == 9) cnt++; // ÀÏÀÇ ÀÚ¸® 3, 6, 9 °¹¼ö Ã¼Å©
-			if(i / 10 == 3 || i / 10 == 6 || i / 10 == 9) cnt++; // ½ÊÀÇ ÀÚ¸® 3, 6, 9 °¹¼ö Ã¼Å© 
-			// °¹¼ö°¡ 0 -> ¼ıÀÚ, °¹¼ö°¡ 1 -> ¢¾, °¹¼ö°¡ 2 -> ¢¾¢¾
+			cnt = 0; // ë‹¤ìŒ ìˆ˜ë¥¼ ìœ„í•œ ì´ˆê¸°í™”
+			if(i % 10 == 3 || i % 10 == 6 || i % 10 == 9) cnt++; // ì¼ì˜ ìë¦¬ 3, 6, 9 ê°¯ìˆ˜ ì²´í¬
+			if(i / 10 == 3 || i / 10 == 6 || i / 10 == 9) cnt++; // ì‹­ì˜ ìë¦¬ 3, 6, 9 ê°¯ìˆ˜ ì²´í¬ 
+			// ê°¯ìˆ˜ê°€ 0 -> ìˆ«ì, ê°¯ìˆ˜ê°€ 1 -> â™¥, ê°¯ìˆ˜ê°€ 2 -> â™¥â™¥
 			switch(cnt) {
 				case 0 : System.out.print(i + "\t"); break;
-				case 1 : System.out.print("¢¾\t"); break;
-				case 2 : System.out.print("¢¾¢¾\t");
+				case 1 : System.out.print("â™¥\t"); break;
+				case 2 : System.out.print("â™¥â™¥\t");
 			}
-			if(i % 10 == 0) System.out.println(); // ÇÑÁÙ¿¡ 10°³¾¿ Ãâ·Â
+			if(i % 10 == 0) System.out.println(); // í•œì¤„ì— 10ê°œì”© ì¶œë ¥
 		}			
 		
-		// µ¿Àü ±³È¯
+		// ë™ì „ êµí™˜
 		Scanner scanner = new Scanner(System.in);
 		int money = 0;
 		int remoney = 0;
 		
-		System.out.print("±³È¯ÇÒ ±İ¾× : ");
+		System.out.print("êµí™˜í•  ê¸ˆì•¡ : ");
 		money = scanner.nextInt();
 		
-		System.out.println("500¿ø Â¥¸® : " + (money / 500) + "°³");
+		System.out.println("500ì› ì§œë¦¬ : " + (money / 500) + "ê°œ");
 		remoney = money % 500; 
 		
-		System.out.println("100¿ø Â¥¸® : " + (remoney / 100) + "°³");
+		System.out.println("100ì› ì§œë¦¬ : " + (remoney / 100) + "ê°œ");
 		remoney %= 100; 
 		
-		System.out.println("50¿ø Â¥¸® : " + (remoney / 50) + "°³");
+		System.out.println("50ì› ì§œë¦¬ : " + (remoney / 50) + "ê°œ");
 		remoney %= 50; 
 		
-		System.out.println("10¿ø Â¥¸® : " + (remoney / 10) + "°³");
+		System.out.println("10ì› ì§œë¦¬ : " + (remoney / 10) + "ê°œ");
 		remoney %= 10; 
 		
-		System.out.println("±³È¯ ±İ¾× : " + (money - remoney) + "¿ø");
-		System.out.println("³²Àº ±İ¾× : " + remoney + "¿ø");
+		System.out.println("êµí™˜ ê¸ˆì•¡ : " + (money - remoney) + "ì›");
+		System.out.println("ë‚¨ì€ ê¸ˆì•¡ : " + remoney + "ì›");
 		
-		// ¼ıÀÚ ÃßÃø °ÔÀÓ
+		// ìˆ«ì ì¶”ì¸¡ ê²Œì„
 		int com = (int)(Math.random() * 100) + 1; 
 		Scanner sc = new Scanner(System.in);
 		
 		while(true) {
-			System.out.print("¼ıÀÚ ÀÔ·Â : ");
+			System.out.print("ìˆ«ì ì…ë ¥ : ");
 			int mynum = sc.nextInt();
 			
 			if(mynum == com) {
-				System.out.println("ÃàÇÏÇÕ´Ï´Ù");
+				System.out.println("ì¶•í•˜í•©ë‹ˆë‹¤");
 				break;
 			}else if(mynum > com){
-				System.out.println("downÇÏ¼¼¿ä!");
+				System.out.println("downí•˜ì„¸ìš”!");
 			}else {
-				System.out.println("upÇÏ¼¼¿ä!");
+				System.out.println("upí•˜ì„¸ìš”!");
 			}
 		}
 		
-		// for Ãß°¡
+		// for ì¶”ê°€
 		for(int i = 0; i < 10; i++) {
 			System.out.println("hhhhhhh");
 		}

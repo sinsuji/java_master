@@ -5,44 +5,44 @@ import java.util.Scanner;
 public class Exam98 {
 
 	public static void main(String[] args) {
-		// 1¹ø
-		String name = "°¨ÀÚ¹Ù";
+		// 1ë²ˆ
+		String name = "ê°ìë°”";
 		int age = 25;
 		String tel1 = "010", tel2 = "123", tel3 = "4567";
-		System.out.println("ÀÌ¸§ : " + name);
-		System.out.print("³ªÀÌ : " + age + "\n");
-		System.out.printf("ÀüÈ­ : %s - %s - %s", tel1, tel2, tel3);
+		System.out.println("ì´ë¦„ : " + name);
+		System.out.print("ë‚˜ì´ : " + age + "\n");
+		System.out.printf("ì „í™” : %s - %s - %s", tel1, tel2, tel3);
 		
-		// 2¹ø
+		// 2ë²ˆ
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("\nÃ¹¹øÂ° ¼ö : ");
+		System.out.print("\nì²«ë²ˆì§¸ ìˆ˜ : ");
 		String strNum1 = scanner.nextLine();
 		
-		System.out.print("µÎ¹øÂ° ¼ö : ");
+		System.out.print("ë‘ë²ˆì§¸ ìˆ˜ : ");
 		String strNum2 = scanner.nextLine();
 		
 		int num1 = Integer.parseInt(strNum1);
 		int num2 = Integer.parseInt(strNum2);
 		int result = num1 + num2;
-		System.out.println("µ¡¼À °á°ú : " + result);
+		System.out.println("ë§ì…ˆ ê²°ê³¼ : " + result);
 
 		
-		// 3¹ø
-		System.out.println("[ÇÊ¼ö Á¤º¸ ÀÔ·Â]");
-		System.out.print("1. ÀÌ¸§ : ");
+		// 3ë²ˆ
+		System.out.println("[í•„ìˆ˜ ì •ë³´ ì…ë ¥]");
+		System.out.print("1. ì´ë¦„ : ");
 		String name1 = scanner.nextLine();
 		
-		System.out.print("2. ÁÖ¹Î¹øÈ£ ¾Õ 6ÀÚ¸® : ");
+		System.out.print("2. ì£¼ë¯¼ë²ˆí˜¸ ì• 6ìë¦¬ : ");
 		String jumin = scanner.nextLine();
 		
-		System.out.print("3. ÀüÈ­¹øÈ£ : ");
+		System.out.print("3. ì „í™”ë²ˆí˜¸ : ");
 		String call = scanner.nextLine();
 		
-		System.out.println("[ÀÔ·ÂÇÑ ³»¿ë]");
-		System.out.println("1. ÀÌ¸§ : " + name1);
-		System.out.println("2. ÁÖ¹Î¹øÈ£ ¾Õ 6ÀÚ¸® : " + jumin);
-		System.out.println("3. ÀüÈ­¹øÈ£ : " + call);
+		System.out.println("[ì…ë ¥í•œ ë‚´ìš©]");
+		System.out.println("1. ì´ë¦„ : " + name1);
+		System.out.println("2. ì£¼ë¯¼ë²ˆí˜¸ ì• 6ìë¦¬ : " + jumin);
+		System.out.println("3. ì „í™”ë²ˆí˜¸ : " + call);
 		
 		scanner.close();
 		

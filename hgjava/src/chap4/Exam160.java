@@ -5,16 +5,16 @@ import java.util.Scanner;
 public class Exam160 {
 
 	public static void main(String[] args) {
-		// ¹®Á¦2 : 3ÀÇ ¹è¼ö ÇÕ
+		// ë¬¸ì œ2 : 3ì˜ ë°°ìˆ˜ í•©
 		int sum = 0;
 		for(int i = 1; i <= 100; i++) {
 			if(i % 3 == 0) {
 				sum += i;
 			}
 		}
-		System.out.println("3ÀÇ ¹è¼öÀÇ ÃÑÇÕ :" + sum);
+		System.out.println("3ì˜ ë°°ìˆ˜ì˜ ì´í•© :" + sum);
 		
-		// ¹®Á¦3
+		// ë¬¸ì œ3
 		while(true) {
 			int num1 = (int)(Math.random() * 6) + 1;
 			int num2 = (int)(Math.random() * 6) + 1;		
@@ -24,12 +24,12 @@ public class Exam160 {
 				break;
 			}
 		}
-		System.out.println("Á¾·á");
+		System.out.println("ì¢…ë£Œ");
 		
-		// ¹®Á¦4
-		// x : 1 ~ 10±îÁö ¹İº¹
+		// ë¬¸ì œ4
+		// x : 1 ~ 10ê¹Œì§€ ë°˜ë³µ
 		for(int x = 1; x <= 10; x++) {
-			// y : 1 ~ 10±îÁö ¹İº¹
+			// y : 1 ~ 10ê¹Œì§€ ë°˜ë³µ
 			for(int y = 1; y <= 10; y++) {
 				if(4*x + 5*y == 60) {					
 					System.out.printf("(%d, %d)\n", x, y);
@@ -37,14 +37,14 @@ public class Exam160 {
 			}
 		}
 		
-		// ¹®Á¦5
+		// ë¬¸ì œ5
 		String star = "";
 		for(int i = 1; i <= 4; i++) {
 			star += "*";
 			System.out.println(star);
 		}
 		
-		// ¹®Á¦6
+		// ë¬¸ì œ6
 		
 		System.out.println("\n");
 		String star1 = "";
@@ -59,7 +59,7 @@ public class Exam160 {
 		}
 		System.out.println(star1);
 		
-		// ¹®Á¦7
+		// ë¬¸ì œ7
 		boolean run = true;
 		int balance = 0;
 		Scanner sc = new Scanner(System.in);
@@ -67,31 +67,31 @@ public class Exam160 {
 		
 		while(run) {
 			System.out.println("---------------------------------");
-			System.out.println("1. ¿¹±İ | 2. Ãâ±İ | 3. ÀÜ°í | 4. Á¾·á");
+			System.out.println("1. ì˜ˆê¸ˆ | 2. ì¶œê¸ˆ | 3. ì”ê³  | 4. ì¢…ë£Œ");
 			System.out.println("---------------------------------");
-			System.out.print("¼±ÅÃ> ");
+			System.out.print("ì„ íƒ> ");
 			int inputData = sc.nextInt();
 			
 			switch(inputData){
 				case 1 : 
-					System.out.print("¿¹±İ¾× > ");
+					System.out.print("ì˜ˆê¸ˆì•¡ > ");
 					money = sc.nextInt();
 					balance += money;
 					break;
 				case 2 :
-					System.out.printf("Ãâ±İ¾× > ");
+					System.out.printf("ì¶œê¸ˆì•¡ > ");
 					money = sc.nextInt();
 					if(money > balance) {
-						System.out.println("ÀÜ¾×ºÎÁ·");
+						System.out.println("ì”ì•¡ë¶€ì¡±");
 					}else {
 						balance -= money;
 					}
 					break;
 				case 3 : 
-					System.out.println("ÀÜ°í > " + balance); 
+					System.out.println("ì”ê³  > " + balance); 
 					break;
 				default : 
-					System.out.print("ÇÁ·Î±×·¥ Á¾·á");
+					System.out.print("í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 					run = false;
 			}
 		}
