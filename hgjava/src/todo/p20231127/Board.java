@@ -40,10 +40,5 @@ public class Board {
 	String getBoDate(){
 		return boDate;
 	}
-	
-	// memberNo의 값을 지정하는 메소드
-		void setBoNo(String boNo) {
-			this.boNo = boNo;
-		}
 }
 

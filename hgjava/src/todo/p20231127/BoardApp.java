@@ -27,6 +27,7 @@ public class BoardApp {
 				String date = scn.nextLine();
 				break;
 			case 2 :
+				no = scn.nextLine();
 				for(int i = 0; i < boards.length; i++) {
 					if(boards[i] != null && boards[i].getBoNo().equals(no)) {
 						boards[i].showInfo();
