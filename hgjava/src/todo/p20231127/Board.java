@@ -11,6 +11,8 @@ public class Board {
 	private String boWriter;
 	private String boText;
 	private String boDate;
+
+	// 나도 변경했습니다
 	
 	// 이 부분이 변경되었습니다 
 	
