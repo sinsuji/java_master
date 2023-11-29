@@ -6,6 +6,10 @@ public class Student {
 	private int stuEng;
 	private int stuMat;
 	
+	Student(){
+		
+	}
+	
 	public Student(String stuNo, String stuName, int stuEng, int stuMat) {
 		this.stuNo = stuNo;
 		this.stuName = stuName;
