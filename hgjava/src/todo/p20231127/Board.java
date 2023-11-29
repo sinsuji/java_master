@@ -11,6 +11,8 @@ public class Board {
 	private String boWriter;
 	private String boText;
 	private String boDate;
+
+	// 나도 변경했습니다
 	
 	public Board(String boNo, String boTitle, String boWriter, String boText, String boDate){
 		this.boNo = boNo;
