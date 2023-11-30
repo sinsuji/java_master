@@ -86,17 +86,18 @@ public class FriendApp {
 		System.out.println("1.이름 2.연락처");
 		int subMenu = Integer.parseInt(scn.nextLine());
 		String searchCond = "";
-		String name = "";
+		
+		String name = scn.nextLine();
 		String phone = "";
 		
 		if(subMenu == 1) {
-			searchCond = scn.nextLine();
 			for(Friend fnd : exe.searchFriend(name)) {
 				if(fnd != null) {
 					System.out.println(fnd.showInfo());
 				}
 			}
 			System.out.println("존재하지 않는 정보");
+			
 //			for(Friend fnd : exe.searchFriend(searchCond)) {
 //				if(fnd != null && fnd.getName().equals(searchCond)) {
 //					System.out.println(fnd.showInfo());
