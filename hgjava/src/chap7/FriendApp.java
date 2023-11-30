@@ -89,14 +89,19 @@ public class FriendApp {
 		
 		String name = scn.nextLine();
 		String phone = "";
+		boolean exists = false;
 		
 		if(subMenu == 1) {
 			for(Friend fnd : exe.searchFriend(name)) {
 				if(fnd != null) {
 					System.out.println(fnd.showInfo());
+					exists = true;
 				}
 			}
-			System.out.println("존재하지 않는 정보");
+			
+			if(!exists) {
+				System.out.println("존재하지 않는 정보");
+			}
 			
 //			for(Friend fnd : exe.searchFriend(searchCond)) {
 //				if(fnd != null && fnd.getName().equals(searchCond)) {

@@ -27,11 +27,25 @@ public class FriendExe {
 		for(int i = 0; i < storage.length; i++) {
 			if(storage[i] != null && storage[i].getName().equals(name)) {
 				result[num++] = storage[i];
+			} 
+		}
+		
+		return result;
+	}
+
+	
+	// 존재하지 않는 정보
+	boolean getFriendNum() {
+		int realNum = 0;
+		for(int i = 0; i < storage.length; i++) {
+			if(storage[i] != null) {
+				realNum++;
+				return true;
 			}
 		}
-		return result;
-		
+		return false;
 	}
+	
 	
 	// 결과값이 null여부로 체크
 	public Friend searchPhone(String phone) {
