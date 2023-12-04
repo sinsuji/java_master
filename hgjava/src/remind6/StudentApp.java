@@ -1,5 +1,7 @@
 package remind6;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentApp {
@@ -10,6 +12,7 @@ public class StudentApp {
 		
 		Scanner scn = new Scanner(System.in);
 		StudentExe exe = new StudentExe();
+		List<Student> students = new ArrayList<>();
 		
 		while(run) {
 			System.out.println("1.등록 2.목록 3.단건조회 4.수정 5.삭제 6.종료");
@@ -26,9 +29,10 @@ public class StudentApp {
 					System.out.println("수학점수입력 >>");
 					int mat = Integer.parseInt(scn.nextLine());
 					
-					Student std = new Student(no, name, eng, mat);
+					students.add(new Student(no, name, eng, mat));
+					
 					// students 배열에 한건 저장
-					if(exe.addStudent(std)) {
+					if(exe.addStudent(students.get(i))) {
 						System.out.println("저장되었습니다");
 					}else {
 						System.out.println("저장 중 오류");
