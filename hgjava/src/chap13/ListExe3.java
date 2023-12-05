@@ -47,11 +47,9 @@ public class ListExe3 {
 			case 2:
 				System.out.println("조회할 이름 입력 >> ");
 				name = scn.nextLine();
-				int cnt = 0;
 				boolean exist = false;
 				for(int i = 0; i < members.size(); i++) {
 					if(members.get(i).getMemberName().indexOf(name) != -1) {
-						cnt++;
 						System.out.println(members.get(i));
 						exist = true;
 					}
