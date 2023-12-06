@@ -1,28 +1,27 @@
-package todo.p20231205;
+package com.yedam;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpExe {
-	private List<Emp> emps;
+public class EmpDAO {
+	List<Employee> emps;
 	
-	EmpExe(){
+	EmpDAO(){
 		emps = new ArrayList<>();
-		emps.add(new Emp("01", "홍길동", "010-1111-1111", "2023-11-27", 1000));
+		emps.add(new Employee("23-11", "홍길동", "943-1234", "2023-12-06", 200));
+		emps.add(new Employee("23-12", "김길동", "943-1244", "2023-12-06", 250));
+		emps.add(new Employee("23-13", "박길동", "943-1254", "2023-12-06", 300));
 	}
 	
-	// 등록
-	boolean addEmp(Emp emp) {
+	boolean addEmp(Employee emp) { // 등록
 		return emps.add(emp);
 	}
 	
-	// 조회
-	List<Emp> getEmpList() {
+	List<Employee> getEmpList() {
 		return emps;
 	}
 	
-	// 수정
-	boolean modifyEmp(String no, int money) {
+	boolean modifyEmp(String no, int money) { // 수정
 		for(int i = 0; i < emps.size(); i++) {
 			if(emps.get(i).getEmpNo().equals(no)) {
 				emps.get(i).setEmpMoney(money);
@@ -32,8 +31,7 @@ public class EmpExe {
 		return false;
 	}
 	
-	// 삭제 
-	boolean removeEmp(String no) {
+	boolean removeEmp(String no) { // 삭제
 		for(int i = 0; i < emps.size(); i++) {
 			if(emps.get(i).getEmpNo().equals(no)) {
 				emps.remove(i);
@@ -42,9 +40,9 @@ public class EmpExe {
 		}
 		return false;
 	}
-	// 조회
-	List<Emp> getEmp(String date) {
-		List<Emp> list = new ArrayList<>();
+	
+	List<Employee> getEmpInfo(String date) { // 조회
+		List<Employee> list = new ArrayList<>();
 		for(int i = 0; i < emps.size(); i++) {
 			if(emps.get(i).getEmpDate().equals(date)) {
 				list.add(emps.get(i));
@@ -52,5 +50,4 @@ public class EmpExe {
 		}
 		return list;
 	}
-	
 }

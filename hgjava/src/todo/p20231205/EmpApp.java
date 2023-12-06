@@ -2,6 +2,7 @@ package todo.p20231205;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmpApp {
@@ -25,6 +26,10 @@ public class EmpApp {
 					System.out.println("입사일자 >> ");
 					String date = scn.nextLine();
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					if(date.equals("")) {
+						Date date1 = new Date();
+						date = sdf.format(date1);
+					}
 					System.out.println("급여 >> ");
 					int money = Integer.parseInt(scn.nextLine());
 					
@@ -67,9 +72,11 @@ public class EmpApp {
 				case 5: // 단건조회
 					System.out.println("입사일자입력 >> ");
 					date = scn.nextLine();
-					Emp empInfo = exe.getEmp(date);
-					if(empInfo != null) {
-						System.out.println(empInfo.showInfo());
+					List<Emp> empInfo = exe.getEmp(date);
+					if(empInfo.size() > 0) {
+						for(Emp emp1 : empInfo) {
+							System.out.println(emp1.showInfo());
+						}
 					}else {
 						System.out.println("존재하지 않는 정보");
 					}
