@@ -21,37 +21,39 @@ public class Student {
 		System.out.println("학생의 이름은 " + stuName + ", 영어점수는 " + stuEng + "점, 수학점수는 " + stuMat + "점 입니다");
 	}
 
-	String getStuNo() {
+	public String getStuNo() {
 		return stuNo;
 	}
 
-	String getStuName() {
-		return stuName;
-	}
-
-	int getStuEng() {
-		return stuEng;
-	}
-
-	int getStuMat() {
-		return stuMat;
-	}
-
-	void setStuNo(String stuNo) {
+	public void setStuNo(String stuNo) {
 		this.stuNo = stuNo;
 	}
 
-	void setStuName(String stuName) {
+	public String getStuName() {
+		return stuName;
+	}
+
+	public void setStuName(String stuName) {
 		this.stuName = stuName;
 	}
 
-	void setStuEng(int stuEng) {
+	public int getStuEng() {
+		return stuEng;
+	}
+
+	public void setStuEng(int stuEng) {
 		this.stuEng = stuEng;
 	}
 
-	void setStuMat(int stuMat) {
+	public int getStuMat() {
+		return stuMat;
+	}
+
+	public void setStuMat(int stuMat) {
 		this.stuMat = stuMat;
 	}
+
+	
 	
 	
 }

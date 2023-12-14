@@ -1,7 +1,5 @@
 package remind6;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class StudentApp {
@@ -12,7 +10,7 @@ public class StudentApp {
 		
 		Scanner scn = new Scanner(System.in);
 		StudentExe exe = new StudentExe();
-		List<Student> students = new ArrayList<>();
+		StudentDAO dao = new StudentDAO();
 		
 		while(run) {
 			System.out.println("1.등록 2.목록 3.단건조회 4.수정 5.삭제 6.종료");
@@ -29,10 +27,9 @@ public class StudentApp {
 					System.out.println("수학점수입력 >>");
 					int mat = Integer.parseInt(scn.nextLine());
 					
-					students.add(new Student(no, name, eng, mat));
-					
+					Student std = new Student(no, name, eng, mat);
 					// students 배열에 한건 저장
-					if(exe.addStudent(students.get(i))) {
+					if(dao.addStudent(std)) {
 						System.out.println("저장되었습니다");
 					}else {
 						System.out.println("저장 중 오류");
@@ -46,7 +43,8 @@ public class StudentApp {
 //					System.out.println("저장되었습니다");
 					break;
 				case 2 : // 목록보기
-					for(Student stdnt : exe.getStudentList()) {
+					Student[] stdAry = dao.getStudentList();
+					for(Student stdnt : stdAry) {
 						if(stdnt != null) {
 							stdnt.showInfo();
 						}
@@ -60,7 +58,7 @@ public class StudentApp {
 				case 3 : // 단건조회
 					System.out.println("조회할 학생번호 입력 >>");
 					no = scn.nextLine();
-					Student stnt = exe.getStudent(no);
+					Student stnt = dao.getStudent(no);
 					if(stnt != null) {
 						stnt.showInfo();
 					}else {
@@ -87,7 +85,7 @@ public class StudentApp {
 					System.out.println("수학점수 입력 >>");
 					mat = Integer.parseInt(scn.nextLine());
 					
-					if(exe.modifyStudent(no, eng, mat)) {
+					if(dao.modifyStudent(no, eng, mat)) {
 						System.out.println("수정 완료");
 					}else {
 						System.out.println("수정 실패");
@@ -112,7 +110,7 @@ public class StudentApp {
 				case 5 : // 삭제
 					System.out.println("삭제할 학생이름 입렵 >>");
 					name = scn.nextLine();
-					if(exe.removeStudent(name)) {
+					if(dao.removeStudent(name)) {
 						System.out.println("삭제 완료");
 					}else {
 						System.out.println("삭제 실패");
