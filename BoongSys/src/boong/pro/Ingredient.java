@@ -26,6 +26,6 @@ public class Ingredient {
 		this.i_date = i_date;
 	}
 	void showInfo() {
-		System.out.println(i_code + "" + i_name + "" + i_price);
+		System.out.println(i_code + " " + i_name + " " + i_price);
 	}
 }

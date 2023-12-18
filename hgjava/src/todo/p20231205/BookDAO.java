@@ -92,7 +92,7 @@ public class BookDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 		return null; // 조회된 값이 없으면 null 값 반환
 	} // end of getBook()
 	

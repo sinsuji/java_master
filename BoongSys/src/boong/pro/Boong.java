@@ -20,7 +20,7 @@ public class Boong {
 	}
 	
 	void showInfo() {
-		System.out.println(b_code + "" + b_name + "" + b_price);
+		System.out.println(b_code + " " + b_name + " " + b_price);
 	}
 	
 	

@@ -10,6 +10,7 @@ public class Member {
 	private String m_phone;
 	private String m_best;
 	private String m_worst;
+	private int m_price;
 	private String m_level;
 	
 	Member(){
@@ -25,6 +26,10 @@ public class Member {
 	}
 	
 	void showInfo() {
-		System.out.println(m_id + "" + m_name + "" + m_phone + "" + m_best + "" + m_worst);
+		System.out.println(m_id + " " + m_name + " " + m_phone + " " + m_best + " " + m_worst);
+	}
+	
+	void showLevelInfo() {
+		System.out.println(m_price + " " + m_level);
 	}
 }

@@ -27,7 +27,7 @@ public class MemberDAO {
 	// 추가
 	boolean addMember(Member member) {
 		getConn();
-		String sql = "insert into b_member values(?,?,?,?,?)";
+		String sql = "insert into b_member(m_id, m_name, m_phone, m_best, m_worst) values(?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, member.getM_id());
@@ -35,7 +35,7 @@ public class MemberDAO {
 			psmt.setString(3, member.getM_phone());
 			psmt.setString(4, member.getM_best());
 			psmt.setString(5, member.getM_worst());
-			psmt.setString(5, member.getM_level());
+			// psmt.setString(5, member.getM_level());
 			
 			int r = psmt.executeUpdate(); // 처리된 건수 반환
 			if(r == 1) {
@@ -72,6 +72,47 @@ public class MemberDAO {
 	} // end of getMemberList()
 	
 	// 수정
+	boolean modifyMember(String m_id, String m_best, String m_worst) {
+		getConn();
+		String sql = "update b_member "
+				+ "set m_best = ? , m_worst = ? "
+				+ "where m_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, m_best);
+			psmt.setString(2, m_worst);
+			psmt.setString(3, m_id);
+			int r = psmt.executeUpdate();
+			if(r > 0) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;	
+	} // end of modifyMember
+		
+	// 등급조회
+	ArrayList<Member> getLevelList(){
+		ArrayList<Member> members = new ArrayList<>();
+		getConn();
+		String sql = "select * from b_level";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				Member member = new Member();
+				member.setM_price(rs.getInt("m_price"));
+				member.setM_level(rs.getString("m_level"));
+				members.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return members;
+	} // end of getLevelList()
 	
 	// 삭제
 	boolean removeMember(String m_id) {

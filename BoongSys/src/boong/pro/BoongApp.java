@@ -10,6 +10,7 @@ public class BoongApp {
 		MemberDAO mdao = new MemberDAO();
 		BoongDAO bdao = new BoongDAO();
 		IngredientDAO idao = new IngredientDAO();
+		InOutDAO pdao = new InOutDAO();
 		
 		while(run) {
 			System.out.println("1.회원관리  2.붕어빵관리  3.재료관리  4.판매관리  5.재고관리  6.종료");
@@ -54,10 +55,29 @@ public class BoongApp {
 						
 						case 3:
 							/* 정보수정 */
+							System.out.println("[수정할 회원의 정보를 입력하세요]");
+							System.out.println("아이디 >> ");
+							m_id = scn.nextLine();
+							System.out.println("최애붕 >> ");
+							m_best = scn.nextLine();
+							System.out.println("극혐붕 >> ");
+							m_worst = scn.nextLine();
+							
+							if (mdao.modifyMember(m_id, m_best, m_worst)) {
+								System.out.println("수정 완료");
+							} else {
+								System.out.println("수정 실패");
+							}
 						break;
 						
 						case 4:
-							/* 회원등급 */
+							/* 등급조회 */
+							ArrayList<Member> levAry = mdao.getLevelList();
+							for (Member llist : levAry) {
+								if (llist != null) {
+									llist.showLevelInfo();
+								}
+							}
 						break;
 						
 						case 5:
@@ -97,6 +117,9 @@ public class BoongApp {
 						
 						case 2: /* 상품목록 */
 							ArrayList<Boong> boongAry = bdao.getBoongList();
+							System.out.println("===================");
+							System.out.println("상품코드  제품명  가격");
+							System.out.println("===================");
 							for (Boong blist : boongAry) {
 								if (blist != null) {
 									blist.showInfo();
@@ -111,6 +134,12 @@ public class BoongApp {
 							b_code = scn.nextLine();
 							System.out.println("가격 >> ");
 							b_price = Integer.parseInt(scn.nextLine());
+							
+							if (bdao.modifyBoong(b_code, b_price)) {
+								System.out.println("수정 완료");
+							} else {
+								System.out.println("수정 실패");
+							}
 						break;
 						
 						case 4: /* 상품삭제 */
@@ -128,7 +157,7 @@ public class BoongApp {
 				
 				case 3: /* 재료관리 */
 					System.out.println("재료관리 메뉴를 선택하세요");
-					System.out.println("1)재료등록 2)재료구매 3)구매조회(상품별) 4)구매조회(날짜별)");
+					System.out.println("1)재료등록 2)재료구매 3)구매조회(상품별) 4)구매조회(날짜별) 5)구매삭제");
 					menu = Integer.parseInt(scn.nextLine());
 					switch(menu) {
 						case 1: /* 재료등록 */
@@ -151,14 +180,17 @@ public class BoongApp {
 						case 2: /* 재료구매 */
 							System.out.println("[구매할 재료의 정보를 입력하세요]");
 							System.out.println("상품코드 >> ");
-							i_code = scn.nextLine();
+							String p_code = scn.nextLine();
 							System.out.println("수량 >> ");
-							int i_num = Integer.parseInt(scn.nextLine());
+							int p_num = Integer.parseInt(scn.nextLine());
 							System.out.println("날짜 >> ");
-							String i_date = scn.nextLine();
+							String p_date = scn.nextLine();
+							if(p_date.equals("")) {
+								p_date = null;
+							}
 							
-							Ingredient register = new Ingredient(i_code, i_num, i_date);
-							if (idao.registerIngre(register)) {
+							InOut register = new InOut(p_code, p_num, p_date);
+							if (pdao.addIn(register)) {
 								System.out.println("등록되었습니다");
 							} else {
 								System.out.println("등록 중 오류");
@@ -166,8 +198,11 @@ public class BoongApp {
 						break;
 							
 						case 3: /* 구매조회(상품별) */
-							ArrayList<Ingredient> ingreAry = idao.getIngreList();
-							for (Ingredient ilist : ingreAry) {
+							ArrayList<InOut> ingreAry = pdao.getRegisterList();
+							System.out.println("===========================");
+							System.out.println("No  상품코드  재료명  수량  날짜");
+							System.out.println("===========================");
+							for (InOut ilist : ingreAry) {
 								if (ilist != null) {
 									ilist.showInfo();
 								}
@@ -175,10 +210,28 @@ public class BoongApp {
 						break;
 						
 						case 4: /* 구매조회(날짜별) */
-							
+							ArrayList<InOut> ingreDateAry = pdao.getIngreDateList();
+							System.out.println("===========================");
+							System.out.println("No  상품코드  재료명  수량  날짜");
+							System.out.println("===========================");
+							for (InOut ilist : ingreDateAry) {
+								if (ilist != null) {
+									ilist.showDateInfo();
+								}
+							}
 						break;
+						
+						case 5: /* 삭제 */
+							System.out.println("[삭제할 번호를 입력하세요]");
+							i_code = scn.nextLine();
+							if (pdao.removeIngre(i_code)) {
+								System.out.println("삭제 완료");
+							} else {
+								System.out.println("삭제 실패");
+							}
+							break;
 					}
-				break;
+					break;
 				
 				case 4: /* 판매관리 */
 					System.out.println("판매관리 메뉴를 선택하세요");
@@ -190,31 +243,50 @@ public class BoongApp {
 							System.out.println("상품코드 >> ");
 							String p_code = scn.nextLine();
 							System.out.println("수량 >> ");
-							String p_num = scn.nextLine();
+							int p_num = Integer.parseInt(scn.nextLine());
 							System.out.println("회원 아이디 >> ");
-							String m_id = scn.nextLine();						
+							String p_id = scn.nextLine();
+							
+							InOut sale = new InOut(p_code, p_num, p_id);
+							if (pdao.addSale(sale)) {
+								System.out.println("등록되었습니다");
+							} else {
+								System.out.println("등록 중 오류");
+							}
 						break;
 						
 						case 2: /* 판매조회(상품별) */
-							
+							ArrayList<InOut> saleAry = pdao.getSaleList();
+							System.out.println("===========================");
+							System.out.println("No  상품코드  제품명  수량  날짜");
+							System.out.println("===========================");
+							for (InOut ilist : saleAry) {
+								if (ilist != null) {
+									ilist.showInfo();
+								}
+							}
 						break;
 						
 						case 3: /* 판매조회(날짜별) */
-							
+							ArrayList<InOut> saleDateAry = pdao.getSaleDateList();
+							System.out.println("===========================");
+							System.out.println("No  상품코드  제품명  수량  날짜");
+							System.out.println("===========================");
+							for (InOut ilist : saleDateAry) {
+								if (ilist != null) {
+									ilist.showDateInfo();
+								}
+							}
 						break;
 					}
 				break;
 				
 				case 5: /* 재고관리 */
 					System.out.println("재고관리 메뉴를 선택하세요");
-					System.out.println("1)재료재고 2)붕어빵재고");
+					System.out.println("1)재료재고");
 					menu = Integer.parseInt(scn.nextLine());
 					switch(menu) {
 						case 1: /* 재료재고 */
-							
-						break;
-						
-						case 2: /* 붕어빵재고 */
 							
 						break;
 					}

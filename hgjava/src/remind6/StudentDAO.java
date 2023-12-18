@@ -26,6 +26,19 @@ public class StudentDAO {
 		return conn;
 	}
 	
+	void disconn() {
+		try {
+			if(conn != null)
+				conn.close();
+			if(rs != null)
+				rs.close();
+			if(psmt != null)
+				psmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 목록
 	Student[] getStudentList() {
 		getConn();
@@ -50,6 +63,8 @@ public class StudentDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			disconn();
 		}
 		return students;
 	}
