@@ -11,7 +11,7 @@ public class IngredientDAO {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
-	
+
 	Connection getConn() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		try {
@@ -23,20 +23,19 @@ public class IngredientDAO {
 		}
 		return conn;
 	}
-	
+
 	// 재료등록
 	boolean addIngre(Ingredient ingre) {
 		getConn();
-		String sql = "insert into b_ingredient(i_code, i_name, i_price) "
-				+ "values (?, ?, ?)";
+		String sql = "insert into b_ingredient(i_code, i_name, i_price) " + "values (?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, ingre.getI_code());
 			psmt.setString(2, ingre.getI_name());
 			psmt.setInt(3, ingre.getI_price());
-			
+
 			int r = psmt.executeUpdate(); // 처리된 건수 반환
-			if(r == 1) {
+			if (r == 1) {
 				return true;
 			}
 		} catch (SQLException e) {
@@ -44,4 +43,44 @@ public class IngredientDAO {
 		}
 		return false;
 	} // end of addIngre()
+
+	// 소요량.
+	public RequiredAmount calRequiredAmount(String iCode) {
+		getConn();
+		String sql = "select * from required_AMOUNT WHERE BREAD=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				RequiredAmount ra = new RequiredAmount();
+				ra.setBread(rs.getString("bread"));
+				ra.setIngredient(rs.getString("ingredient"));
+				ra.setIQty(rs.getInt("i_qty"));
+				ra.setIngredient2(rs.getString("ingredient2"));
+
+				return ra;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// 수량차감.
+	public boolean outQty(String code, int qty) {
+		getConn();
+		String sql = "insert into b_purchase(p_sq,p_code,p_num) values(ex_sq.nextval, ?,?) ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, code);
+			psmt.setInt(2, qty);
+			int r = psmt.executeUpdate();
+			if (r > 0)
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
