@@ -17,6 +17,12 @@ public class Member {
 		
 	}
 	
+	Member(String m_id, String m_best, String m_worst){
+		this.m_id = m_id;
+		this.m_best = m_best;
+		this.m_worst = m_worst;
+	}
+	
 	Member(String m_id, String m_name, String m_phone, String m_best, String m_worst){
 		this.m_id = m_id;
 		this.m_name = m_name;

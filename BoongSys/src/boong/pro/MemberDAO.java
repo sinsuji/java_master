@@ -75,7 +75,7 @@ public class MemberDAO {
 	boolean modifyMember(String m_id, String m_best, String m_worst) {
 		getConn();
 		String sql = "update b_member "
-				+ "set m_best = ? , m_worst = ? "
+				+ "set m_best = ?, m_worst = ? "
 				+ "where m_id = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -90,7 +90,7 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;	
+		return false;
 	} // end of modifyMember
 		
 	// 등급조회

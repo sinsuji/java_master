@@ -13,5 +13,4 @@ public class RequiredAmount {
 	private int hQty;
 	private String ingredient4;
 	private int cQty;
-
 }

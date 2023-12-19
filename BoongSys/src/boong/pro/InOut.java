@@ -19,11 +19,24 @@ public class InOut {
 		
 	}
 	
-	InOut(String p_code, int p_num, String p_date){
+	InOut(int p_sq, String p_code, int p_num, String p_id){
+		this.p_sq = p_sq;
 		this.p_code = p_code;
 		this.p_num = p_num;
-		this.p_date = p_date;
+		this.p_id = p_id;
 	}
+	
+	InOut(String p_code, int p_num, String p_id){
+		this.p_code = p_code;
+		this.p_num = p_num;
+		this.p_id = p_id;
+	}
+	
+//	InOut(String p_code, int p_num, String p_date){
+//		this.p_code = p_code;
+//		this.p_num = p_num;
+//		this.p_date = p_date;
+//	}
 	
 	InOut(String p_code, String p_name, int p_num){
 		this.p_code = p_code;
@@ -31,12 +44,13 @@ public class InOut {
 		this.p_num = p_num;
 	}
 	
-	InOut(int p_sq, String p_code, String p_name, int p_num, String p_date){
+	InOut(int p_sq, String p_code, String p_name, int p_num, String p_date, String p_id){
 		this.p_sq = p_sq;
 		this.p_code = p_code;
 		this.p_name = p_name;
 		this.p_num = p_num;
 		this.p_date = p_date;		
+		this.p_id = p_id;		
 	}
 	
 	void showInfo() {
@@ -45,6 +59,14 @@ public class InOut {
 	
 	void showDateInfo() {
 		System.out.println(p_sq + " " + p_code + " " + p_name + " " + p_num + " " + p_date);
+	}
+	
+	void showInventoryInfo() {
+		System.out.println(p_code + " " + p_name + " " + p_num);
+	}
+	
+	void show() {
+		System.out.println(p_code + " "  + p_num + " " + p_id);
 	}
 	
 }

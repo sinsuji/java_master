@@ -47,9 +47,12 @@ public class IngredientDAO {
 	// 소요량.
 	public RequiredAmount calRequiredAmount(String iCode) {
 		getConn();
-		String sql = "select * from required_AMOUNT WHERE BREAD=?";
+		String sql = "select * "
+				+ "from required_amount "
+				+ "WHERE bread = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, iCode);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				RequiredAmount ra = new RequiredAmount();
@@ -57,6 +60,11 @@ public class IngredientDAO {
 				ra.setIngredient(rs.getString("ingredient"));
 				ra.setIQty(rs.getInt("i_qty"));
 				ra.setIngredient2(rs.getString("ingredient2"));
+				ra.setBQty(rs.getInt("b_qty"));
+				ra.setIngredient3(rs.getString("ingredient3"));
+				ra.setHQty(rs.getInt("h_qty"));
+				ra.setIngredient4(rs.getString("ingredient4"));
+				ra.setCQty(rs.getInt("c_qty"));
 
 				return ra;
 			}
@@ -73,7 +81,7 @@ public class IngredientDAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, code);
-			psmt.setInt(2, qty);
+			psmt.setInt(2, qty*-1);
 			int r = psmt.executeUpdate();
 			if (r > 0)
 				return true;
@@ -83,4 +91,6 @@ public class IngredientDAO {
 		}
 		return false;
 	}
+	
+
 }

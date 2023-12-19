@@ -53,6 +53,7 @@ public class InOutDAO {
 		String sql = "select p.p_sq, i.i_code, i.i_name, p.p_num, p.p_date "
 				+ "from b_ingredient i, b_purchase p "
 				+ "where i.i_code = p.p_code "
+				+ "and p.p_num > 0 "
 				+ "order by i.i_code";
 		
 		try {
@@ -64,7 +65,7 @@ public class InOutDAO {
 				register.setP_code(rs.getString("i_code"));
 				register.setP_name(rs.getString("i_name"));
 				register.setP_num(rs.getInt("p_num"));
-				register.setP_date(rs.getString("p_date"));
+				register.setP_date(rs.getString("p_date").substring(0, 10));
 				registers.add(register);
 			}
 		} catch (SQLException e) {
@@ -80,6 +81,7 @@ public class InOutDAO {
 		String sql = "select p.p_sq, i.i_code, i.i_name, p.p_num, p.p_date "
 				+ "from b_ingredient i, b_purchase p "
 				+ "where i.i_code = p.p_code "
+				+ "and p.p_num < 0 "
 				+ "order by p.p_date desc";
 		
 		try {
@@ -91,7 +93,7 @@ public class InOutDAO {
 				register.setP_code(rs.getString("i_code"));
 				register.setP_name(rs.getString("i_name"));
 				register.setP_num(rs.getInt("p_num"));
-				register.setP_date(rs.getString("p_date"));
+				register.setP_date(rs.getString("p_date").substring(0, 10));
 				registers.add(register);
 			}
 		} catch (SQLException e) {
@@ -148,8 +150,11 @@ public class InOutDAO {
 			getConn();
 			String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
 					+ "from b_bread b, b_purchase p "
-					+ "where b.b_code = p.p_code "
-					+ "order by b.b_code";
+					+ "where b.b_code = p.p_code";
+//			String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
+//					+ "from b_bread b, b_purchase p "
+//					+ "where b.b_code = p.p_code "
+//					+ "order by b.b_code";
 			
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -160,7 +165,7 @@ public class InOutDAO {
 					register.setP_code(rs.getString("b_code"));
 					register.setP_name(rs.getString("b_name"));
 					register.setP_num(rs.getInt("p_num"));
-					register.setP_date(rs.getString("p_date"));
+					register.setP_date(rs.getString("p_date").substring(0, 10));
 					registers.add(register);
 				}
 			} catch (SQLException e) {
@@ -170,30 +175,81 @@ public class InOutDAO {
 		} // end of getSaleList()
 		
 		// 목록(상품별)
-				ArrayList<InOut> getSaleDateList(){
-					ArrayList<InOut> registers = new ArrayList<>();
-					getConn();
-					String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
-							+ "from b_bread b, b_purchase p "
-							+ "where b.b_code = p.p_code "
-							+ "order by p.p_date desc";
-					
-					try {
-						psmt = conn.prepareStatement(sql);
-						rs = psmt.executeQuery();
-						while(rs.next()) {
-							InOut register = new InOut();
-							register.setP_sq(rs.getInt("p_sq"));
-							register.setP_code(rs.getString("b_code"));
-							register.setP_name(rs.getString("b_name"));
-							register.setP_num(rs.getInt("p_num"));
-							register.setP_date(rs.getString("p_date"));
-							registers.add(register);
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					return registers;
-				} // end of getSaleDateList()
+		ArrayList<InOut> getSaleDateList(){
+			ArrayList<InOut> registers = new ArrayList<>();
+			getConn();
+			String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
+					+ "from b_bread b, b_purchase p "
+					+ "where b.b_code = p.p_code "
+					+ "order by p.p_date desc";
+			
+			try {
+				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					InOut register = new InOut();
+					register.setP_sq(rs.getInt("p_sq"));
+					register.setP_code(rs.getString("b_code"));
+					register.setP_name(rs.getString("b_name"));
+					register.setP_num(rs.getInt("p_num"));
+					register.setP_date(rs.getString("p_date").substring(0, 10));
+					registers.add(register);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return registers;
+		} // end of getSaleDateList()
+		
+		// 재료 재고목록
+		ArrayList<InOut> getInventoryList(){
+			ArrayList<InOut> inventorys = new ArrayList<>();
+			getConn();
+			String sql = "select p.p_code, i.i_name, sum(p_num) "
+					+ "from b_purchase p, b_ingredient i "
+					+ "where p.p_code = i.i_code "
+					+ "group by p_code, i_name";
+			
+			try {
+				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					InOut inventory = new InOut();
+					inventory.setP_code(rs.getString("p_code"));
+					inventory.setP_name(rs.getString("i_name"));
+					inventory.setP_num(rs.getInt("sum(p_num)"));
+					inventorys.add(inventory);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return inventorys;
+		} // end of getInventoryList()
+		
+		// 붕어빵 재고목록
+		ArrayList<InOut> getBreadList(){
+			ArrayList<InOut> inventorys = new ArrayList<>();
+			getConn();
+			String sql = "select p.p_code, b.b_name, count(*) "
+					+ "from b_purchase p, b_bread b "
+					+ "where p.p_code = b.b_code "
+					+ "group by p_code, b_name "
+					+ "order by p.p_code";
+			
+			try {
+				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					InOut inventory = new InOut();
+					inventory.setP_code(rs.getString("p_code"));
+					inventory.setP_name(rs.getString("b_name"));
+					inventory.setP_num(rs.getInt("count(*)"));
+					inventorys.add(inventory);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return inventorys;
+		} // end of getInventoryList()
 	
 }
