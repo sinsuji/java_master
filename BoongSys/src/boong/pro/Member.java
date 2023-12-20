@@ -23,16 +23,17 @@ public class Member {
 		this.m_worst = m_worst;
 	}
 	
-	Member(String m_id, String m_name, String m_phone, String m_best, String m_worst){
+	Member(String m_id, String m_name, String m_phone, String m_best, String m_worst, String m_level){
 		this.m_id = m_id;
 		this.m_name = m_name;
 		this.m_phone = m_phone;
 		this.m_best = m_best;
 		this.m_worst = m_worst;
+		this.m_level = m_level;
 	}
 	
 	void showInfo() {
-		System.out.println(m_id + " " + m_name + " " + m_phone + " " + m_best + " " + m_worst);
+		System.out.println(m_id + " " + m_name + " " + m_phone + " " + m_best + " " + m_worst + " " + m_level);
 	}
 	
 	void showLevelInfo() {

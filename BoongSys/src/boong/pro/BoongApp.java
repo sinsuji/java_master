@@ -39,8 +39,13 @@ public class BoongApp {
 						String m_best = scn.nextLine();
 						System.out.println("극혐붕 >> ");
 						String m_worst = scn.nextLine();
+						System.out.println("등급 >> ");
+						String m_level = scn.nextLine();
+						if (m_level.equals("")) {
+							m_level = null;
+						}
 	
-						Member member = new Member(m_id, m_name, m_phone, m_best, m_worst);
+						Member member = new Member(m_id, m_name, m_phone, m_best, m_worst, m_level);
 						if (mdao.addMember(member)) {
 							System.out.println("등록되었습니다");
 						} else {
@@ -51,9 +56,9 @@ public class BoongApp {
 					case 2:
 						/* 회원목록 */
 						ArrayList<Member> memAry = mdao.getMemberList();
-						System.out.println("================================");
-						System.out.println("아이디  이름  연락처       최애붕  극혐붕");
-						System.out.println("================================");
+						System.out.println("=====================================");
+						System.out.println("아이디  이름  연락처       최애붕  극혐붕   등급");
+						System.out.println("=====================================");
 						for (Member mlist : memAry) {
 							if (mlist != null) {
 								mlist.showInfo();
@@ -269,7 +274,6 @@ public class BoongApp {
 	
 						InOut sale = new InOut(p_code, p_num, p_id);
 						if (pdao.addSale(sale)) {
-							sale.show();
 							System.out.println("등록되었습니다");
 							// 해당상품의 소요량 계산.
 							RequiredAmount ra = idao.calRequiredAmount(p_code);
@@ -281,8 +285,18 @@ public class BoongApp {
 	
 							String sCode = ra.getIngredient2();
 							int sqty = ra.getBQty();
-							System.out.println(ra);
+							// System.out.println(ra);
 							idao.outQty(sCode, sqty);
+							
+							if(p_code.equals("B003")) {
+								String hCode = ra.getIngredient3();
+								int hqty = ra.getHQty();
+								idao.outQty(hCode, hqty);
+		
+								String cCode = ra.getIngredient4();
+								int cqty = ra.getCQty();
+								idao.outQty(cCode, cqty);
+							}
 	
 						} else {
 							System.out.println("등록 중 오류");

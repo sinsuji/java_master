@@ -13,7 +13,7 @@ public class InOutDAO {
 	ResultSet rs;
 	
 	Connection getConn() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.0.31:1521:xe"; // @localhost
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
@@ -54,7 +54,7 @@ public class InOutDAO {
 				+ "from b_ingredient i, b_purchase p "
 				+ "where i.i_code = p.p_code "
 				+ "and p.p_num > 0 "
-				+ "order by i.i_code";
+				+ "order by p.p_date desc, i.i_code";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class InOutDAO {
 				+ "from b_ingredient i, b_purchase p "
 				+ "where i.i_code = p.p_code "
 				+ "and p.p_num < 0 "
-				+ "order by p.p_date desc";
+				+ "order by p.p_date desc, i.i_code";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -150,7 +150,8 @@ public class InOutDAO {
 			getConn();
 			String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
 					+ "from b_bread b, b_purchase p "
-					+ "where b.b_code = p.p_code";
+					+ "where b.b_code = p.p_code "
+					+ "order by b.b_code";
 //			String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
 //					+ "from b_bread b, b_purchase p "
 //					+ "where b.b_code = p.p_code "
@@ -181,7 +182,7 @@ public class InOutDAO {
 			String sql = "select p.p_sq, b.b_code, b.b_name, p.p_num, p.p_date "
 					+ "from b_bread b, b_purchase p "
 					+ "where b.b_code = p.p_code "
-					+ "order by p.p_date desc";
+					+ "order by p.p_date desc, b.b_code";
 			
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -208,7 +209,8 @@ public class InOutDAO {
 			String sql = "select p.p_code, i.i_name, sum(p_num) "
 					+ "from b_purchase p, b_ingredient i "
 					+ "where p.p_code = i.i_code "
-					+ "group by p_code, i_name";
+					+ "group by p_code, i_name "
+					+ "order by p.p_code";
 			
 			try {
 				psmt = conn.prepareStatement(sql);
