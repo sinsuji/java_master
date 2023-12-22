@@ -1,6 +1,6 @@
-<%@page import="common.*"%> <!-- common 안에 있는 모든 것들을 import 하겠다 -->
-<%@page import="common.Student"%>
-<%@page import="common.StudentDAO"%>
+<!-- import="common.*" common 안에 있는 모든 것들을 import 하겠다 -->
+<%@page import="com.yedam.student.vo.Student"%>
+<%@page import="com.yedam.student.mapper.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

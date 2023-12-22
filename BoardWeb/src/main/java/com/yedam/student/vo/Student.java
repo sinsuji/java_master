@@ -1,4 +1,4 @@
-package common;
+package com.yedam.student.vo;
 
 public class Student {
 	private String stuNo;
@@ -6,6 +6,7 @@ public class Student {
 	private int stuEng;
 	private int stuMat;
 	
+	// 생성자 정의
 	public Student(){
 		
 	}
