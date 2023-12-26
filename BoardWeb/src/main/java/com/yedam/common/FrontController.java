@@ -21,6 +21,9 @@ import com.yedam.board.command.ModifyBoardContro;
 import com.yedam.board.command.ModifyFormControl;
 import com.yedam.board.command.RemoveBoardControl;
 import com.yedam.board.command.RemoveFormControl;
+import com.yedam.member.command.LoginControl;
+import com.yedam.member.command.LoginFormControl;
+import com.yedam.member.command.LogoutControl;
 
 // @WebServlet("*.do")
 
@@ -52,6 +55,11 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoardContro());
 		map.put("/removeForm.do", new RemoveFormControl());
 		map.put("/removeBoard.do", new RemoveBoardControl());
+		
+		// 회원관련
+		map.put("/loginForm.do", new LoginFormControl()); // 화면 보여주는 것
+		map.put("/login.do", new LoginControl()); // 실제 로그인 실행
+		map.put("/logout.do", new LogoutControl()); // 로그아웃 실행
 	}
 	
 	@Override

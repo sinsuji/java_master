@@ -7,6 +7,9 @@
 <title>board/addBoardForm.jsp</title>
 </head>
 <body>
+<%
+	String logName = (String) session.getAttribute("logName");	
+%>
 	<h3>등록화면</h3>
     <form action="addBoard.do">
         <table border="1">
@@ -20,7 +23,7 @@
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="writer" value="홍길동"></td>
+                <td><input type="text" name="writer" value="<%=logName %>"></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">

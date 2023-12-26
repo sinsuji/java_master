@@ -7,11 +7,25 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.yedam.board.mapper.BoardMapper;
 import com.yedam.board.vo.BoardVO;
+import com.yedam.member.service.MemberService;
+import com.yedam.member.vo.MemberVO;
+import com.yedam.memberserviceImpl.MemberServiceImpl;
 
 public class MainExe {
 	public static void main(String[] args) {
-		SqlSessionFactory factory = DataSource.getInstance();
-		SqlSession session = factory.openSession(true);
+		MemberService svc = new MemberServiceImpl();
+		MemberVO vo = svc.login("user1", "1111");
+		
+		if(vo != null) {
+			System.out.println(vo);
+			System.out.println("환영!!" + vo.getName() + "님. 권한은 " + vo.getResponsibility());
+		}else {
+			System.out.println("id, pw 확인");
+		}
+		
+		
+//		SqlSessionFactory factory = DataSource.getInstance();
+//		SqlSession session = factory.openSession(true);
 
 		/* 조회수 */
 //		BoardMapper mapper = session.getMapper(BoardMapper.class);
@@ -24,12 +38,12 @@ public class MainExe {
 //		}
 		
 		/* 단건조회 */
-		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		BoardVO vo = new BoardVO();
-		vo.setBoardNo(2);
-		vo = mapper.selectOne(2);
-		
-		System.out.println(vo);
+//		BoardMapper mapper = session.getMapper(BoardMapper.class);
+//		BoardVO vo = new BoardVO();
+//		vo.setBoardNo(2);
+//		vo = mapper.selectOne(2);
+//		
+//		System.out.println(vo);
 		
 		/* 삭제 */
 //		BoardMapper mapper = session.getMapper(BoardMapper.class);
