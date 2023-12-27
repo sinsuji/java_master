@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="../layout/menu.jsp" %>
-<%@ include file="../layout/nav.jsp" %>
 	<%
 		String msg = (String) request.getAttribute("message");
 	%>
@@ -11,7 +9,7 @@
 	<p><%=msg %></p>
 	<% } %>
 
-	<form action="login.do">
+	<form action="login.do" method="post">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -33,4 +31,3 @@
 		</table>
 	</form>
 	
-<%@ include file="../layout/foot.jsp" %>

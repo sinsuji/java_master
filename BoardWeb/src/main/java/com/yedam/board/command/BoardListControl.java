@@ -26,7 +26,7 @@ public class BoardListControl implements Control {
 		
 		// 페이지 이동(forward) 
 		// RequestDispatcher -> 요청을 재지정 해주는 기능
-		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/boardList.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("board/boardList.tiles");
 		try {
 			rd.forward(req, resp);
 		} catch (ServletException | IOException e) {
