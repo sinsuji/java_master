@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom01.html</title>
+</head>
+<body class="bdy">
+    <!-- 표 -->
+
+    <script>
+        console.log(window);
+
+        // 버튼 만들기
+        let btn = document.createElement('button'); // Document 오브젝트
+        btn.innerText = 'Btn';
+        btn.addEventListener('click', function(){
+            window.alert('Click 됨');
+        })
+
+        console.log(btn);
+        document.querySelector('body').appendChild(btn);
+
+
+        // ul > li 만들기
+        const fruits = ['apple', 'banana', 'cherry'];
+        let bdy = document.querySelector('body');
+        let ul = document.createElement('ul');
+
+        // 배열 for of
+        for(let fruit of fruits){
+            let li1 = document.createElement('li');
+            li1.innerText = fruit;
+            ul.appendChild(li1);
+        }
+
+        // let li2 = document.createElement('li');
+        // li2.innerText = 'banana';
+        // ul.appendChild(li2);
+
+        // let li3 = document.createElement('li');
+        // li3.innerText = 'cherry';
+        // ul.appendChild(li3);
+
+        console.log(ul);
+        bdy.appendChild(ul);
+
+        // table
+        let tbl = document.createElement('table');
+        
+        let thd = document.createElement('thead');
+        let tr1 = document.createElement('tr');
+        
+        let th2 = document.createElement('th');
+        let th3 = document.createElement('th');
+
+        let tbd = document.createElement('tbody');
+        let tr2 = document.createElement('tr');
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+
+        const info = ['아이디', '이름', '전화번호']
+        for(let th of info){
+            let th1 = document.createElement('th');
+            th1.innerText = th;
+            tr1.appendChild(th1); 
+        }
+
+        const user = ['user1', '홍길동', '010-1111']
+        for(let td of user){
+            let td1 = document.createElement('td');
+            td1.innerText = td;
+            tr2.appendChild(td1);
+        }
+
+        tbl.appendChild(thd);
+        thd.appendChild(tr1);
+        // tr1.appendChild(th1);
+        // th1.innerText = '아이디'
+        // tr1.appendChild(th2);
+        // th2.innerText = '이름'
+        // tr1.appendChild(th3);
+        // th3.innerText = '전화번호'
+        
+        tbl.appendChild(tbd);
+        tbd.appendChild(tr2);
+        // tr2.appendChild(td1);
+        // td1.innerText = 'user1';
+        // tr2.appendChild(td2);
+        // td2.innerText = '홍길동';
+        // tr2.appendChild(td3);
+        // td3.innerText = '010-1111';
+
+        bdy.appendChild(tbl);
+         
+
+    </script>
+</body>
+</html>
