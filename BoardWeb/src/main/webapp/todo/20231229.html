@@ -14,18 +14,24 @@
             display:inline-block;
             width:80px;
             height:30px;
+            margin:0 5px;
+            box-sizing:border-box;
             background-color:yellow;
         }
     </style>
 </head>
 <body>
     <div id="show">
-        <span>Lorem</span>
-        <span>ipsum</span>
     </div>
     <script>
         const words = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, aspernatur quaerat totam soluta facere asperiores consequuntur tempore, voluptates ea doloribus ad temporibus exercitationem unde eligendi illum corporis suscipit dolor. Nostrum?';
         const wordAry = words.split(' ');
+        let word = document.querySelector('div');
+        wordAry.forEach(function(item) {
+            let span = document.createElement('span');
+            span.innerText = item;
+            word.appendChild(span);
+        })
     </script>
 </body>
 </html>
