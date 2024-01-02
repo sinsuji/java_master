@@ -7,79 +7,109 @@
 </head>
 <body>
     <p>Hello</p>
+    <div id="show">
+        <table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>나이</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+    </div>
 
+    <!-- <script src="variable.js"></script> -->
     <script>
-        // var: 함수레벨, let, const: block 레벨
-        var name = 'Hwang';
-        function myfunc()
-        {
-            var name = 'Hong';
-            console.log(name);
-            console.log(this);
+        function myfunc(){
+            console.log('myfunc call');
+            return 'undefined';
         }
-        myfunc();
-        console.log(name);
+        console.log(myfunc());
+        // null, undefined
+        let num = null;
+        console.log(typeof num);
 
-        let age = 20;
-        //function myfunc2()
-        {
-            let age = 22;
-            console.log(age);
+        let num1;
+        let num2 = null;
+        console.log(num1 === num2); // 값, 타입 비교
+        
+        if(!num1){ // null, undefined, '', 0 => 비교연산자를 쓰면 false
+            console.log('num값은 false입니다.');
         }
-        //myfunc2();
-        console.log(age);
-        let obj = {
-            id: 'Hong',
-            age: 20,
-            show: function(){
-                console.log(this);
+
+        // 형변환 - parseInt. parseFloat
+        num1 = 'a30';
+        console.log(num1, typeof num1);
+    
+        num1 = parseInt(num1);
+        console.log(num1, typeof num1); // NaN - not a number, number타입
+
+        // 삼항연산자
+        let result = (3 > 2) ? 'true' : 'false'; // 참이면 첫번째 값을, 거짓이면 두번째 값을 반환
+        console.log(result);
+
+        // 논리연산자
+        console.log(!!'문자열'); // 자바스크립트는 값이 있으면 true
+
+        // 비트연산자 - 비트를 가지고 연산을 하겠다(2진수로)
+        console.log(12 | 3); // 1111 => 15
+        // 12 => 1100
+        // 3 =>  0011
+        console.log(12 >> 2); // 두번 오른쪽으로 shift(이동) 하겠다 / 옆으로 두칸씩 밀리고 남은값은 버리겠다 => 11 = 3
+
+        // 반복문
+        for(let i = 1; i < 10; i++){
+            
+        }
+        // for ~ of => 여러가지 변수를 담고 있을 때
+        let friends = [{name:'라이언', age:5}, {name:'어피치', age:4}]
+        for (let friend of friends) {
+            console.log('이름:' + friend.name + ', 나이:' + friend.age);
+        }
+
+        // for ~ in => 객체의 속성값을 가지고 올 때
+        for(let prop in friends[0]){
+            console.log('속성: ' + prop + ', 값: ' + friends[0][prop]);
+        }
+
+        // forEach - 데이터 타입이 배열일 때, 함수가 매개값으로 옴
+        friends[friends.length] = {name:'콘', age:2};
+        friends[friends.length] = {name:'무지', age:3};
+        friends.forEach(function(friend, idx, friendsAry){ // 요소안에 들어있는 값, 인덱스, 배열 그 자체
+            // 나이가 3보다 많은 값을 가져오겠다
+            //if(friend.age > 3){ // friend['age'] > 3
+                //console.log(friend, idx, friendsAry);
+            //}
+
+            // 홀수 위치의 값을 가져오겠다
+            // if(idx % 2 == 1){ 
+            //     console.log(friend, idx, friendsAry);
+            // }
+
+            // 마지막 위치의 값을 가져오겠다
+            if(idx == friendsAry.length - 1){ 
+                console.log(friend, idx, friendsAry);
+            }
+        })
+
+        // 3살 넘는 친구들만 표로 출력
+        let tlist = document.getElementById('list');
+        document.querySelector('table').setAttribute('border', 1);
+        friends.forEach(makeFriend);
+
+        function makeFriend(friend, idx, friendsAry){ // var makeFriend = function makeFriend(friend, idx, friendsAry)
+            if(friend['age'] > 3){
+                console.log(friend, idx, friendsAry);
+                let tr = document.createElement('tr');
+                for(let prop in friend){
+                    let td = document.createElement('td');
+                    td.innerText = friend[prop];
+                    tr.appendChild(td);
+                }
+                tlist.appendChild(tr);
             }
         }
-        obj.show();
-
-        document.body.addEventListener('click', function(){
-            console.log(this);
-        })
-        // 1. 전역영역: window 객체
-        // 2. 함수: widow 객체
-        // 3. 객체: object
-        // 4. 이벤트: 이벤트 실행 대상 
-        // console.log(this);
-
-        // let show = 'Hello';
-        // function show(){
-        //     console.log('show');
-        // }
-        // () - 함수를 실행하겠음
-        let show = function(){
-            console.log('show');
-            // return undefined; 반환하는 값을 따로 정의하지 않으면 기본적으로 undefined를 반환하겠다는 말
-            return '반환값';
-        }
-        console.log(show());
-
-        (function(){
-            console.log('익명함수');
-        })();
-
-        // 함수명명 규칙
-        function showMyName(){
-            console.log('홍길동');
-        }
-
-        // 상수선언
-        const height = 167.9;
-        // height = 169;
-
-        const friend = {
-            name: '홍길동',
-            phone: '010-1111'
-        }
-        friend.phone = '010-2222';
-
-        // friend = {}
-
-        
-    </script>
+        </script>
 </body>
 </html>

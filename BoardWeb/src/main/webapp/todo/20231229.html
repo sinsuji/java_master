@@ -6,32 +6,64 @@
     <title>todo/20231229.html</title>
     <style>
         #show{
-            width:300px;
-            height:250px;
+            width:290px;
+            height:350px;
             background-color:aqua;
         }
         span{
             display:inline-block;
-            width:80px;
+            width:90px;
             height:30px;
-            margin:0 5px;
-            box-sizing:border-box;
             background-color:yellow;
+            margin:2px;
         }
     </style>
 </head>
 <body>
+
+    <input type="text" name="userValue" id="userValue">
+    <button id="delBtn">삭제</button>
     <div id="show">
     </div>
     <script>
         const words = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, aspernatur quaerat totam soluta facere asperiores consequuntur tempore, voluptates ea doloribus ad temporibus exercitationem unde eligendi illum corporis suscipit dolor. Nostrum?';
         const wordAry = words.split(' ');
-        let word = document.querySelector('div');
-        wordAry.forEach(function(item) {
+        // 화면상에 span 생성
+        let show = document.getElementById('show');
+        // for반복문
+        wordAry.forEach(function(word) {
             let span = document.createElement('span');
-            span.innerText = item;
-            word.appendChild(span);
+            span.innerText = word;
+            show.appendChild(span);
         })
+        
+        // id=delBtn에 클릭
+        document.getElementById('delBtn').addEventListener('click', function(){
+            // 사용자의 입력값(userInput) == 화면상에 span요소를 가져와서(spanAll) span.remove();
+            // 사용자 입력화면 초기화
+            let userInput = document.querySelector('input[name=userValue]').value;
+            let spanAll = document.querySelectorAll('span');
+            console.log(spanAll);
+            // spanAll.forEach(function(item) {
+            //     if(userInput == item.innerText){
+            //         item.remove();
+            //     } 
+            // });
+
+            for(let item of spanAll){
+                // console.log(item);
+                if(userInput == item.innerText){
+                    item.remove();
+                }
+            }
+            // 초기화
+            document.getElementById('userValue').value = '';
+            document.getElementById('userValue').focus();
+        })
+
+
+
+        
     </script>
 </body>
 </html>
