@@ -28,6 +28,8 @@ console.log(ary3);
 const obj1 = {name: 'Hong', age: 20};
 const obj2 = {name: 'Hwang', height: 170};
 
+
+
 // 중복된 값(같은 속성)은 뒤에 값으로 변경됨
 const obj3 = {...obj1, ...obj2};
 console.log(obj3);
