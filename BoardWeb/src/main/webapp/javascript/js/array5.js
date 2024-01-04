@@ -23,7 +23,7 @@ console.log("Hong" > "Park");
 // 나이순으로 정렬
 friends.sort((a, b) => { // 첫번째 값, 두번째 값
     if(a.age < b.age){
-        return -1;
+        return -1; // -1 값이 나오는 순대로 정렬
     } else{
         return 1;
     }
