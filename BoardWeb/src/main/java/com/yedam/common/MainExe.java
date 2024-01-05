@@ -10,18 +10,23 @@ import com.yedam.board.vo.BoardVO;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.vo.MemberVO;
 import com.yedam.memberserviceImpl.MemberServiceImpl;
+import com.yedam.reply.service.ReplyService;
+import com.yedam.reply.serviceImpl.ReplyServiceImpl;
 
 public class MainExe {
 	public static void main(String[] args) {
-		MemberService svc = new MemberServiceImpl();
-		MemberVO vo = svc.login("user1", "1111");
+		ReplyService svc = new ReplyServiceImpl();
+		svc.replyListPaging(3, 3).forEach(reply -> System.out.println(reply)); // 컬렉션을 반환 (이 매개값을 받아서 -> 이 구문을 실행하세요)
 		
-		if(vo != null) {
-			System.out.println(vo);
-			System.out.println("환영!!" + vo.getName() + "님. 권한은 " + vo.getResponsibility());
-		}else {
-			System.out.println("id, pw 확인");
-		}
+//		MemberService svc = new MemberServiceImpl();
+//		MemberVO vo = svc.login("user1", "1111");
+//		
+//		if(vo != null) {
+//			System.out.println(vo);
+//			System.out.println("환영!!" + vo.getName() + "님. 권한은 " + vo.getResponsibility());
+//		}else {
+//			System.out.println("id, pw 확인");
+//		}
 		
 		
 //		SqlSessionFactory factory = DataSource.getInstance();
