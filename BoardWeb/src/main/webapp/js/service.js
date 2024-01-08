@@ -26,7 +26,10 @@
 			let result = JSON.parse(delHtp.responseText); // json문자열 -> 자바스크립트의 객체로 변경
 			if(result.retCode == 'OK'){
 				alert('삭제됨');
-				btn.parentElement.remove();
+				// btn.parentElement.remove();
+				// bno, page => 페이지리스트, 페이징리스트
+				showList(pageInfo);
+				
 			} else if(result.retCode == 'NG'){
 				alert('처리중 에러');
 			}
