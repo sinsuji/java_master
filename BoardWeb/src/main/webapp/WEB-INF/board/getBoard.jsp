@@ -115,7 +115,7 @@
    		}
     	
     	// Ajax호출
-    	function showList(page) {
+    	function showList_backup(page) {
     		ul.innerHTML = '';
 	    	const xhtp = new XMLHttpRequest(); // 내장객체 - 비동기 방식으로 서버에 데이터를 요청하고 받아옴
 	    	xhtp.open('get', 'replyListJson.do?bno=' + bno + "&page=" + page); // 서버에 요청할 페이지 지정 // 요청방식, 요청페이지
@@ -128,6 +128,18 @@
 	    		})
 	    	}
     	} // 
+    	function showList(page) {
+    		ul.innerHTML = '';
+    		fetch('replyListJson.do?bno=' + bno + "&page=" + page) // get방식이면 option이 필요없음, url만 있으면 됨
+    		.then(str => str.json())
+    		.then(result => {
+    			result.forEach(reply => {
+    				let li = makeLi(reply);
+    				ul.appendChild(li);
+    			});
+    		})
+    		.catch(reject => console.log(reject));
+    	}
     	showList(pageInfo);
     	
     	// 페이지 생성
@@ -180,22 +192,56 @@
     		let reply = document.querySelector('#content').value;
     		let replyer = '${logId}';
     		
-    		const addAjax = new XMLHttpRequest();
-    		addAjax.open('get', 'addReplyJson.do?reply=' + reply + '&replyer=' + replyer + '&bno=' + bno);
-    		addAjax.send();
+    		// fetch함수
+    		fetch('addReplyJson.do', {
+    			method: 'post',
+    			headers: {
+    				'Content-Type': 'application/x-www-form-urlencoded'
+    			},
+    			body: 'reply=' + reply + '&replyer=' + replyer + '&bno=' + bno
+    		})
+    		.then(str => str.json())
+    		.then(result => {
+    			console.log(result);
+    			
+    			if(result.retCode == 'OK'){
+    				// let reply = result.vo;		
+    				// let li = makeLi(reply);
+	    			// ul.appendChild(li);
+	    			alert('처리성공')
+	    			pageInfo = 1;
+	    			showList(pageInfo);
+	    			pagingList();
+	    			
+	    			document.querySelector('#content').value = '';
+	    			
+    			} else if(result.retCode == 'NG'){
+    				alert('처리중 에러');
+    			}
+    		})
+    		.catch(err => console.error(err));
+    		
+    		/* const addAjax = new XMLHttpRequest();
+    		addAjax.open('post', 'addReplyJson.do');
+    		addAjax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    		addAjax.send('reply=' + reply + '&replyer=' + replyer + '&bno=' + bno);
     		addAjax.onload = function() {
     			let result = JSON.parse(addAjax.responseText);
     			if(result.retCode == 'OK'){
     				// let reply = result.vo;		
     				// let li = makeLi(reply);
 	    			// ul.appendChild(li);
+	    			alert('처리성공')
+	    			pageInfo = 1;
 	    			showList(pageInfo);
+	    			pagingList();
 	    			
 	    			document.querySelector('#content').value = '';
+	    			
     			} else if(result.retCode == 'NG'){
     				alert('처리중 에러');
     			}
-    		}
+    		} */ // end of onload
     		console.log(reply, replyer);
     	}
     </script>
