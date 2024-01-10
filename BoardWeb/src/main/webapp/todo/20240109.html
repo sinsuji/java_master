@@ -27,14 +27,13 @@
 			
 			// 선택삭제
 			$('#delSelected').on('click', function() {
-				$('tbody :checked').parentsUntil('tbody').remove();
+				$('tbody input[type="checkbox"]:checked').parentsUntil('tbody').remove();
 			})
 			
-			// 전체선택
-			$('thead input').on('click', function() {
-				$('tbody input').change(function() {
-					$('tbody :checked');
-				});
+			// 전체선택/해제
+			$('thead input[type="checkbox"]').on('change', function() {
+				// console.log(this.checked);
+				$('tbody input[type="checkbox"]').prop('checked', this.checked);
 			})
 
         })
