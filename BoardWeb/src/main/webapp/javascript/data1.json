@@ -1,0 +1,5 @@
+[
+    {"bcode":"B001", "bname":"이것이자바다", "bauthor":"김자바", "bpress":"자바출판사", "bprice":2000},
+    {"bcode":"B002", "bname":"이것이자바스크립트다", "bauthor":"김자스", "bpress":"자스출판사", "bprice":3000}
+]
+

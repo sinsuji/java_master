@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T20240116.html</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>도서코드</th>
+                <td><input type="text" name="bcode" value="B001"></td>
+            </tr>
+            <tr>
+                <th>도서명</th>
+                <td><input type="text" name="bname" value="이것이 자바다"></td>
+            </tr>
+            <tr>
+                <th>도서저자</th>
+                <td><input type="text" name="bauthor" value="홍성식"></td>
+            </tr>
+                <th>도서출판사</th>
+                <td><input type="text" name="bpress" value="혼공출판사"></td>
+            </tr>
+            <tr>
+                <th>도서금액</th>
+                <td><input type="text" name="bprice" value="20000"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button id="saveBtn">저장</button>
+                    <button id="delSeleted">선택삭제</button>
+                </td>
+            </tr>
+        </thead>
+    </table>
+
+    <table border="1">
+        <tbody>
+            <tr>
+                <th><input type="checkbox" name="allCheck"></th>
+                <th>도서코드</th>
+                <th>도서명</th>
+                <th>도서저자</th>
+                <th>도서출판사</th>
+                <th>도서가격</th>
+                <th>삭제</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="book.js"></script>
+</body>
+</html>
