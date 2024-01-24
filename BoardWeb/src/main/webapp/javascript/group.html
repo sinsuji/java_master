@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>그룹이벤트</title>
+</head>
+<body>
+	<h3>바닐라 자바스크립트</h3>
+	<input type="text" id="txt">
+	<button id="btn" type="button">추가</button>
+	<ul id="sel">
+		<li>바나나</li>
+		<li>사과</li>
+	</ul>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<script>
+	document.querySelector('ul').addEventListener('click', function() {
+		if(event.target.nodeName == 'LI') { // nodeName은 무조건 대문자로 찾아야함
+			event.target.style.backgroundColor = 'aqua';
+		}
+	})
+
+
+	// $('ul').on('click', 'li', function() { // 그룹이벤트
+	// 	$(event.target).css('backgroundColor', 'yellowgreen'); // event.target -> 실제 이벤트가 발생한 태그
+	// })
+
+	$('#btn').on('click', function() {
+		let txtValue = $('#txt').val();
+		$('#sel').append($("<li>").text(txtValue));
+	})
+</script>
