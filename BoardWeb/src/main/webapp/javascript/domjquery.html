@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>domJquery.html</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>10</td>
+            <td>20</td>
+            <td>30</td>
+        </tr>
+    </table>
+    <script>
+        let total = 0;
+        $("td").each((i, item) => {
+            // console.log(item.innerText);
+            // console.log($(item).html());
+            total += parseInt($(item).html()); // 아래와 동일
+            total += Number($(item).html()); // Number는 null값도 계산가능
+        })   
+        console.log("total=", total)     
+
+        document.querySelectorAll("td").forEach((item, idx) => {
+            console.log(item.innerText);
+            if(idx == 0){
+                return  // forEach는 break가 안먹음, every함수와 some함수를 사용하면 가능함
+            }
+        })
+
+        $("td").each((idx, item) => {
+            console.log(item.innerText);
+            if(idx == 0){
+                return false; // break
+            }
+        })
+
+    </script>
+
+    <!--  -->
+    <input id="txtFruit">
+    <button id="btnAdd">추가</button>
+    <button id="btnDel">삭제</button>
+    <select id="selFruit" size="10">
+        <option>사과</option>
+    </select>
+</body>
+
+<script>
+                    // 타입, 핸들러(리스너)
+    $("#btnAdd").on("click", () => {
+        // let op = $("<option>")
+        // op.text($("#txtFruit").val())
+        // $("#selFruit").append(op);
+        $("<option>").text($("#txtFruit").val())
+                     .appendTo($("#selFruit")); // appendTo => 부모한테 자식을 붙이는 것
+        $("#txtFruit").val("")
+
+
+    })
+
+    $("#txtFruit").on("keypress", e => {
+        if(event.keyCode == 13){
+            $("#btnAdd").click();
+        }
+    })
+
+    $("#btnDel").on("click", () => {
+      $("#selFruit").html("");
+      // $("#selFruit").empty(""); // 위와 동일, empty => 내용을 지우는 것, remove => 태그를 지우는 것  
+    })
+
+</script>
+</html>
